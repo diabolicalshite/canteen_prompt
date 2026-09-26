@@ -1,30 +1,43 @@
-# Quick Prompt Challenge: College Canteen
+ROLE: Indian college canteen operations manager + cost analyst.
 
-Act as an expert Indian college canteen manager, nutritionist, and cost analyst.
+OBJECTIVE: Plan how to spend ₹10,000 to improve a college canteen for 6 days (Mon–Sat): menu, pricing, quantities, demand and waste management. Goal: more customers, waste <5%, no loss.
 
-**TASK:** I have ₹10,000 to improve my college canteen for one week (Mon–Sat). Decide the food, pricing, quantities, and how to manage demand, so we serve more students, waste less, and don't lose money.
+DEFAULT ASSUMPTIONS (use unless told otherwise; label any new ones [ASSUMED]):
+- 800 students; 350 buyers/day; spend ₹50–100/student/day
+- Peaks: 10:30–11:00 AM, 1:00–2:00 PM
+- Problems: long queues, repetitive menu, stock-outs, waste
+- 2 cooks, basic gas kitchen, 1 fridge, no new staff
+- ₹10,000 = working capital; sales revenue may be reinvested
 
-**CONTEXT:**
-- About 800 students; 300–400 eat at the canteen daily, with ₹50–100 per day to spend.
-- Peak rushes: 10:30–11 AM and 1–2 PM.
-- Current problems: long queues, a boring menu, popular items running out, and others going to waste.
-- 2 cooks, basic kitchen, no new staff. Sales revenue can be reinvested during the week.
+CONSTRAINTS:
+C1. Total spend ≤ ₹10,000
+C2. Food safety and hygiene are never compromised
+C3. Price ₹10–80 per item; margin ≥ 20%
+C4. ≥2 healthy veg items, ≥1 Jain item
+C5. Only local, low-cost ingredients and existing equipment
 
-**RULES:**
-- Total spend of ₹10,000 or less, with the math shown.
-- Prices between ₹10 and ₹80, with at least a 20% margin on every item.
-- At least 2 healthy veg items and 1 Jain option.
-- Only cheap, locally available ingredients.
+FALLBACK RULES:
+- Missing data → use the default above and tag [ASSUMED].
+- Conflict → priority C1 > C2 > C3 > C4 > C5.
+- If a constraint can't be met → state which one, why, and the closest workable option.
 
-**GIVE ME:**
-1. One-line strategy.
-2. Menu table: Item | Cost | Price | Margin | Why.
-3. Day-wise quantity plan with a daily "Special of the Day".
-4. Budget breakdown table that totals ₹10,000.
-5. Demand plan: pre-orders via WhatsApp or Google Form, UPI tokens to cut queues, combos, and discounts after 3 PM on leftover items.
-6. Weekly revenue and profit forecast.
-7. 4 measurable KPIs, such as queue under 5 min and waste under 5%.
-8. Top 3 risks with a backup plan for each.
+FORMULAS (use exactly; round ₹ to whole numbers, units to integers):
+- Margin % = (Price − Cost) ÷ Price × 100
+- Daily Revenue = Σ(Units Sold × Price)
+- Weekly Profit = Total Revenue − Total Spend
+- Waste % = (Prepared − Sold) ÷ Prepared × 100
+- Total Spend = Ingredients + Packaging + Upgrades + Buffer
 
-Check your budget and margin math before answering. Use tables and keep it practical.
+OUTPUT (in this order, tables exactly as specified, no preamble):
+1. Strategy: 1 sentence.
+2. Menu: | Item | Category | Cost ₹ | Price ₹ | Margin % | Tag (Healthy/Jain/Combo/Regular) |
+3. Quantity Plan: | Item | Mon | Tue | Wed | Thu | Fri | Sat | — include a rotating "Special of the Day".
+4. Budget: | Head | Amount ₹ | % of 10,000 | — last row = Total.
+5. Demand Plan (max 5 bullets): pre-orders (WhatsApp/Google Form), UPI tokens, combos, peak-hour counters, next-day quantity adjustment from sales data.
+6. Waste Plan (max 4 bullets): forecasting, leftover use (3 PM discount/next-day reuse/donation), daily waste log.
+7. Forecast: | Day | Footfall | Revenue ₹ | Cost ₹ | Profit ₹ | Waste % | — last row = Week Total.
+8. KPIs: | KPI | Target | How measured | — 4 rows.
+9. Risks: | Risk | Impact | Backup plan | — 3 rows.
+10. Checks: | Constraint | Pass/Fail | Value | — one row each for C1–C5 and waste < 5%.
 
+Keep text under 350 words, excluding tables.
